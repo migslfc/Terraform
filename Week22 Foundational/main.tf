@@ -1,11 +1,11 @@
 
 resource "aws_db_subnet_group" "db_subnet_group" {
   name       = "db_subnet_group"
-  subnet_ids = module.vpc.private_subnet_ids
+  subnet_ids = module.vpc.private_subnets
 
   tags = {
-    Name = "db_subnet_group"
-    Project = "Week22-LastOneBaby"
+    Name      = "db_subnet_group"
+    Project   = "Week22-LastOneBaby"
     Terraform = "true"
   }
 }
@@ -44,4 +44,7 @@ resource "aws_security_group" "week22-sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+resource "aws_eip" "ngw" {
+  count = 2
 }
